@@ -52,4 +52,9 @@ map.on('click', function(e) {
 console.log(latlngBounds);
 map.fitBounds(latlngBounds, {padding: 0.5}); */
 
-document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', signup, map));
+document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', SetSelectedPoint));
+
+function SetSelectedPoint(event, map) {
+    console.log(event.currentTarget.dataset.lat);
+    //map.panTo([event.currentTarget.dataset.lat,event.currentTarget.dataset.lng])
+}
