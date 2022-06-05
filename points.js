@@ -1,6 +1,6 @@
 export const points = [
     {
-        "id": "",
+        "id": "1",
         "position": {
             "lat": 50.701870298467696,
             "lng": -1.2895803407729292
@@ -13,7 +13,7 @@ export const points = [
         "g-maps": "",
 		"history": [
 			{
-                "id": "",
+                "id": "1-1",
 				"date-taken": "2022-01-01",
 				"image": "",
 				"credit": {
@@ -27,13 +27,14 @@ export const points = [
                 "direction": ""
 			}
 		]
-    },{
-        id: "",
+    },
+    {
+        "id": "2",
         "position": {
-            "lat": 50.706505599999,
-            "lng": -1.296561063744
+            "lat": 50.59802389332379,
+            "lng": -1.2083137035369875
         },
-        "title": "Newport Rail Tunnel Something",
+        "title": "Ventnor Rail Tunnel",
         "buttonlabel": "",
         "color": "#ff0000",
 		"date-added": "",
@@ -41,7 +42,7 @@ export const points = [
         "g-maps": "",
 		"history": [
 			{
-                "id": "",
+                "id": "2-1",
 				"date-taken": "2022-01-01",
 				"image": "",
 				"credit": {
