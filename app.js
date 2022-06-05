@@ -45,7 +45,9 @@ points.forEach(function (marker) {
 
 // Get lat lng from clicking the map
 map.on('click', function(e) {
-    console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+	const output = `Lat: ${e.latlng.lat}, Lng: ${e.latlng.lng}`;
+    console.log(output);
+	document.getElementById('output').innerText = output;
 });
 
 /* const latlngBounds = points.map(p => [p.position.lat, p.position.lng]);
@@ -54,7 +56,8 @@ map.fitBounds(latlngBounds, {padding: 0.5}); */
 
 document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', SetSelectedPoint));
 
-function SetSelectedPoint(event, map) {
-    console.log(event.currentTarget.dataset.lat);
-    //map.panTo([event.currentTarget.dataset.lat,event.currentTarget.dataset.lng])
+function SetSelectedPoint(event) {
+	const thisPoint = [event.currentTarget.dataset.lat,event.currentTarget.dataset.lng];
+    console.log(thisPoint);
+    map.panTo(thisPoint);
 }

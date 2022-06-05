@@ -2,8 +2,8 @@ export const points = [
     {
         "id": "",
         "position": {
-            "lat": 50.7065055999999998,
-            "lng": -1.296561063744878339321076055057346820831298828125
+            "lat": 50.701870298467696,
+            "lng": -1.2895803407729292
         },
         "title": "Newport Rail Tunnel",
         "buttonlabel": "",
