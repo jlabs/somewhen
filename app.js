@@ -39,6 +39,7 @@ points.forEach(function (marker) {
             icon: window.LMapMarkerIcon(marker) 
         }
 	);
+	m.bindPopup(marker.title).openPopup();
 	map._markers.push(m);
 	map.addLayer(m);
 });
@@ -49,6 +50,17 @@ map.on('click', function(e) {
     console.log(output);
 	document.getElementById('output').innerText = output;
 });
+
+var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+}
+
+map.on('click', onMapClick);
 
 /* const latlngBounds = points.map(p => [p.position.lat, p.position.lng]);
 console.log(latlngBounds);
