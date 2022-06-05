@@ -1,5 +1,5 @@
 import { points } from "/points.js";
-import { setDisplay, signup } from "/display.js";
+import { setDisplay } from "/display.js";
 
 //var map = L.map('map').setView([51.505, -0.09], 13);
 
