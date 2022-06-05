@@ -14,7 +14,7 @@ export function setDisplay(points) {
 }
 
 export function signup(event, map) {
-    console.log(event.currentTarget.dataset.lat)
+    console.log(event.currentTarget.dataset.lat);
     //console.log(event.currentTarget);
     map.panTo([event.currentTarget.dataset.lat,event.currentTarget.dataset.lng])
 }
