@@ -4,17 +4,18 @@
 
 body {
   margin: 0;
+  height: 100vh;;
 }
 
 main {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 #map {
   background-color: hsl(78, 17%, 73%);
-  height: 180vh;
+  height: 100%;
 }
 
 aside {
