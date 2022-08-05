@@ -1,3 +1,17 @@
+class Point {
+    constructor(id, title, colour, toi) {
+        this.id = id;
+        this.title = title;
+        this.colour = colour;
+    }
+}
+
+class TOI {
+    constructor(dateTaken) {
+        this.dateTaken = dateTaken;
+    }
+};
+
 export const points = [
     {
         "id": "1",
