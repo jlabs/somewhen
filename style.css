@@ -1,5 +1,7 @@
 *, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -22,4 +24,10 @@ aside {
   background-color: hsl(90 18% 64%);
   color: hsl(320 17% 17%);
   padding: .8rem;
+}
+
+button {
+  width: 100%;
+  text-transform: uppercase;
+  padding: 1em;
 }
