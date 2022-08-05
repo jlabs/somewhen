@@ -41,11 +41,10 @@ points.forEach(function (marker) {
 	);
 	m.bindPopup(marker.title).openPopup();
 	let bubble = L.popup();
-	/* bubble
+	bubble
 		.setLatLng(marker.position)
-		.setContent("bubble")
-		.openOn(map)
-		.openPopup(); */
+		.setContent("hubble")
+		.openOn(map);
 	map._markers.push(m);
 	map.addLayer(m);
 });
