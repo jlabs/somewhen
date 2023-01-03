@@ -29,7 +29,21 @@ export const points = [
 			{
                 "id": "1-1",
 				"date-taken": "2022-01-01",
-				"image": "",
+				"image": "https://source.unsplash.com/1600x900/?beach",
+				"credit": {
+                    "name": "",
+                    "email" : "",
+                    "source" : "",
+                },
+				"description": "An image of course",
+				"date-added": "",
+				"date-updated": "",
+                "direction": ""
+			},
+            {
+                "id": "1-1",
+				"date-taken": "2022-01-01",
+				"image": "https://source.unsplash.com/1600x900/?sea",
 				"credit": {
                     "name": "",
                     "email" : "",
@@ -58,7 +72,7 @@ export const points = [
 			{
                 "id": "2-1",
 				"date-taken": "2022-01-01",
-				"image": "",
+				"image": "https://source.unsplash.com/1600x900/?beach",
 				"credit": {
                     "name": "",
                     "email" : "",
