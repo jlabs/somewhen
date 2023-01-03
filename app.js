@@ -31,7 +31,6 @@ window.LMapTiles(map);
 map._markers = [];
 
 // Add markers to array
-
 points.forEach(function (marker) {
 	const m = L.marker(
 		marker.position,
@@ -40,10 +39,11 @@ points.forEach(function (marker) {
         }
 	);
 	m.bindPopup(marker.title).openPopup();
+
 	let bubble = L.popup();
 	bubble
 		.setLatLng(marker.position)
-		.setContent("hubble")
+		.setContent("<h2>test</h2>")
 		.openOn(map);
 	map._markers.push(m);
 	map.addLayer(m);
@@ -51,9 +51,9 @@ points.forEach(function (marker) {
 
 // Get lat lng from clicking the map
 map.on('click', function(e) {
-	const output = `Lat: ${e.latlng.lat}, Lng: ${e.latlng.lng}`;
-    console.log(output);
-	document.getElementById('output').innerText = output;
+	const output = `<p>Lat: ${e.latlng.lat}, Lng: ${e.latlng.lng}</p>`;
+    //console.log(output);
+	document.getElementById('output').innerHTML = output;
 });
 
 var popup = L.popup();
@@ -63,6 +63,7 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
+	console.log(e.latlng)
 }
 
 map.on('click', onMapClick);
@@ -74,7 +75,19 @@ map.fitBounds(latlngBounds, {padding: 0.5}); */
 document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', SetSelectedPoint));
 
 function SetSelectedPoint(event) {
-	const thisPoint = [event.currentTarget.dataset.lat,event.currentTarget.dataset.lng];
-    console.log(thisPoint);
-    map.panTo(thisPoint);
+	const id = event.currentTarget.dataset.id;
+	const point = points.filter(p => p.id == id)[0];    
+    map.panTo([point.position.lat, point.position.lng]);
+
+	const images = point.history;
+	let gallery = "";
+	images.forEach(img => {
+		gallery += `
+			<img src="${img.image}" style="width:300px; object-fit: cover"/>
+			<div>
+				${img.description}
+			</div>
+		`
+	})
+	document.getElementById('output').innerHTML = `${gallery}`
 }
