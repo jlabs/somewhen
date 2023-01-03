@@ -5,7 +5,7 @@ export function setDisplay(points) {
     points.forEach(point => {
         locations.innerHTML += `
             <div>
-                <button data-lat="${point.position.lat}" data-lng="${point.position.lng}">
+                <button data-id="${point.id}">
                     <h2>${point.buttonlabel != "" ? point.buttonlabel : point.title}</h2>
                 </button>
             </div>
