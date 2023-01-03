@@ -15,6 +15,10 @@ main {
   min-height: 100%;
 }
 
+img {
+  display: block;
+}
+
 #map {
   background-color: hsl(78, 17%, 73%);
   height: 100%;
