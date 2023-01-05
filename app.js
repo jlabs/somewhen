@@ -83,7 +83,7 @@ function SetSelectedPoint(event) {
 	let gallery = "";
 	images.forEach(img => {
 		gallery += `
-			<img src="${img.image}" style="width:300px; object-fit: cover"/>
+			<img src="${img.image}" style="width:100%; object-fit: cover"/>
 			<div>
 				${img.description}
 			</div>
