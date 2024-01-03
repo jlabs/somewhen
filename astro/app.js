@@ -50,13 +50,12 @@ points.forEach(function (marker) {
 });
 
 // Get lat lng from clicking the map
-map.on('click', function(e) {
+/* map.on('click', function(e) {
 	const output = `<p>Lat: ${e.latlng.lat}, Lng: ${e.latlng.lng}</p>`;
-    //console.log(output);
 	document.getElementById('output').innerHTML = output;
-});
+}); */
 
-var popup = L.popup();
+/* var popup = L.popup();
 
 function onMapClick(e) {
     popup
@@ -66,7 +65,7 @@ function onMapClick(e) {
 	console.log(e.latlng)
 }
 
-map.on('click', onMapClick);
+map.on('click', onMapClick); */
 
 /* const latlngBounds = points.map(p => [p.position.lat, p.position.lng]);
 console.log(latlngBounds);
