@@ -46,7 +46,19 @@ onMounted(() => {
     marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
     circle.bindPopup("I am a circle.");
     polygon.bindPopup("I am a polygon.");
+    // Standalong popup
+    var popup = L.popup()
+        .setLatLng([51.513, -0.09])
+        .setContent("I am a standalone popup.")
+        .openOn(map);
+
+    // Click events
+    map.on('click', onMapClick);
 })
+
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
 
 </script>
 
