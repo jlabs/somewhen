@@ -26,6 +26,9 @@ onMounted(() => {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+
+    // Test marker
+    var marker = L.marker([51.5, -0.09]).addTo(map);
 })
 
 </script>
