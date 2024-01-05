@@ -32,10 +32,10 @@ onMounted(() => {
 
 <template>
     <Head title="Welcome" />
-    
+
     <div id="map"></div>
 </template>
 
 <style>
-    #map { height: 180px; }
+    #map { height: 100dvh; }
 </style>
