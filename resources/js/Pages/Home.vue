@@ -45,19 +45,18 @@ onMounted(() => {
     // Test popups
     marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
     circle.bindPopup("I am a circle.");
-    polygon.bindPopup("I am a polygon.");
-    // Standalong popup
-    var popup = L.popup()
-        .setLatLng([51.513, -0.09])
-        .setContent("I am a standalone popup.")
-        .openOn(map);
+    polygon.bindPopup("I am a polygon.");    
 
     // Click events
     map.on('click', onMapClick);
 })
 
 function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
+    var popup = L.popup();
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
 }
 
 </script>
@@ -66,8 +65,17 @@ function onMapClick(e) {
     <Head title="Welcome" />
 
     <div id="map"></div>
+
+    <aside>
+        <div id="locations"></div>
+        <div id="details"></div>
+        <div id="output"></div>
+    </aside>
 </template>
 
 <style>
-    #map { height: 100dvh; }
+    #map { 
+        height: 100dvh;
+        width: 50%;
+    }
 </style>
