@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
+import { points } from '../points.js'
 
 defineProps({
     canLogin: {
@@ -20,7 +21,11 @@ defineProps({
 });
 
 onMounted(() => {
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map')
+        .setView([
+            50.7065055999999998448402038775384426116943359375,
+            -1.296561063744878339321076055057346820831298828125
+        ], 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -49,6 +54,26 @@ onMounted(() => {
 
     // Click events
     map.on('click', onMapClick);
+
+    points.forEach(function (marker) {
+        const m = L.marker(
+            marker.position,
+            { 
+                icon: window.LMapMarkerIcon(marker) 
+            }
+        );
+        m.bindPopup(marker.title).openPopup();
+
+        let bubble = L.popup();
+        bubble
+            .setLatLng(marker.position)
+            .setContent("<h2>test</h2>")
+            .openOn(map);
+        map._markers.push(m);
+        map.addLayer(m);
+    });
+
+    console.log(points);
 })
 
 function onMapClick(e) {
