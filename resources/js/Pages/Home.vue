@@ -51,7 +51,7 @@ onMounted(() => {
             color: marker.colour,
             fillColor: marker.colour,
             fillOpacity: 1,
-            radius: 1000
+            radius: 300
         }).addTo(map);
         /* const m = L.marker(
             marker.position,
