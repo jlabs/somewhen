@@ -56,23 +56,45 @@ function onMapClick(e) {
         .openOn(map);
 }
 
+function hello(id) {
+    alert(`hi ${id}`);
+    map.panTo([
+        50.7065055999999998448402038775384426116943359375,
+        -1.296561063744878339321076055057346820831298828125
+    ])
+}
+
 </script>
 
 <template>
     <Head title="Welcome" />
 
-    <div id="map"></div>
+    <main>
+        <div id="map"></div>
+    
+        <aside>
+            <ul>
+                <li v-for="pin in locations">
+                    <div @click="hello(pin.id)" class="">{{ pin.title }}</div>
+                </li>
+            </ul>            
+        </aside>
+    </main>
 
-    <aside>
-        <div id="locations"></div>
-        <div id="details"></div>
-        <div id="output"></div>
-    </aside>
 </template>
 
 <style>
     #map { 
         height: 100dvh;
-        width: 100dvw;
+        width: 100%;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 70dvw 30dvw;
+    }
+
+    aside {
+        width: 100%;
     }
 </style>
