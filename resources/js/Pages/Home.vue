@@ -53,7 +53,7 @@ onMounted(() => {
             fillOpacity: 1,
             radius: 300
         }).addTo(map);
-        circle.bindPopup("I am a location.");
+        circle.bindPopup(marker.title);
         /* const m = L.marker(
             marker.position,
             { 
