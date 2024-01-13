@@ -15,62 +15,38 @@ onMounted(() => {
         .setView([
             50.7065055999999998448402038775384426116943359375,
             -1.296561063744878339321076055057346820831298828125
-        ], 3);
+        ], 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-
-    // Test marker
-    var marker = L.marker([51.5, -0.09]).addTo(map);
-    // Test circle
-    var circle = L.circle([51.508, -0.11], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-    }).addTo(map);
-    // Test polygon
-    var polygon = L.polygon([
-        [51.509, -0.08],
-        [51.503, -0.06],
-        [51.51, -0.047]
-    ]).addTo(map);
-    // Test popups
-    marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-    circle.bindPopup("I am a circle.");
-    polygon.bindPopup("I am a polygon.");    
+    }).addTo(map); 
 
     // Click events
     map.on('click', onMapClick);
-
 
     props.locations.forEach(function (marker) {
         var circle = L.circle([marker.coordinates.lat, marker.coordinates.lng], {
             color: marker.colour,
             fillColor: marker.colour,
-            fillOpacity: 1,
+            fillOpacity: 0.5,
             radius: 300
         }).addTo(map);
         circle.bindPopup(marker.title);
-        /* const m = L.marker(
-            marker.position,
-            { 
-                icon: window.LMapMarkerIcon(marker) 
-            }
-        );
-        m.bindPopup(marker.title).openPopup();
-
-        let bubble = L.popup();
-        bubble
-            .setLatLng(marker.position)
-            .setContent("<h2>test</h2>")
-            .openOn(map);
-        map._markers.push(m);
-        map.addLayer(m); */
+        // Add a click event listener to the circle
+        circle.on('click', function (e) {
+            // 'e' is the event object, and 'e.latlng' contains the coordinates where the click occurred
+            //alert('Circle clicked at: ' + e.latlng.toString());
+            GetLocation(marker.id);
+        });
     });
 })
+
+async function GetLocation(id) {
+    const response = await fetch(`/api/locations/${id}`);
+    const movies = await response.json();
+    console.log(movies);
+}
 
 function onMapClick(e) {
     var popup = L.popup();
