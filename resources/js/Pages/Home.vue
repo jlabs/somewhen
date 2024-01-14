@@ -26,6 +26,8 @@ onMounted(() => {
     // Click events
     map.on('click', onMapClick);
 
+    const bounds = [];
+
     props.locations.forEach(function (marker) {
         var circle = L.circle([marker.coordinates.lat, marker.coordinates.lng], {
             color: marker.colour,
@@ -40,7 +42,10 @@ onMounted(() => {
             //alert('Circle clicked at: ' + e.latlng.toString());
             GetLocation(marker.id);
         });
+
+        bounds.push([marker.coordinates.lat, marker.coordinates.lng]);
     });
+    map.fitBounds(bounds);
 })
 
 async function GetLocation(id) {
