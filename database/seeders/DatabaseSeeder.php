@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Location::factory()->create([
             'title' => 'Newport Rail Tunnel',
-            'colour' => '#ff0000',
+            'colour' => fake()->hexColor(),
             'button_label' => 'Newport Rail Tunnel',
             'coordinates' => [
                 'lat' => '50.701870298467696',
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Location::factory()->create([
             'title' => 'Ventnor Rail Tunnel',
-            'colour' => '#ff0000',
+            'colour' => fake()->hexColor(),
             'button_label' => 'Newport Rail Tunnel',
             'coordinates' => [
                 'lat' => '50.59802389332379',
@@ -39,5 +39,17 @@ class DatabaseSeeder extends Seeder
             ],
             'gmaps_url' => fake()->url()
         ]);
+        \App\Models\Location::factory()->create([
+            'title' => 'Shide Chalk Pit',
+            'colour' => fake()->hexColor(),
+            'button_label' => 'Shide Chalk Pit',
+            'coordinates' => [
+                'lat' => '50.68857',
+                'lng' => '-1.285191',
+            ],
+            'gmaps_url' => fake()->url()
+        ]);
+
+        \App\Models\Moment::factory(15)->create();
     }
 }
