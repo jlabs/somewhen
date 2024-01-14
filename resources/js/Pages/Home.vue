@@ -10,8 +10,9 @@ const props = defineProps({
     }
 });
 
+var map;
 onMounted(() => {
-    var map = L.map('map')
+    map = L.map('map')
         .setView([
             50.7065055999999998448402038775384426116943359375,
             -1.296561063744878339321076055057346820831298828125
@@ -44,8 +45,8 @@ onMounted(() => {
 
 async function GetLocation(id) {
     const response = await fetch(`/api/locations/${id}`);
-    const movies = await response.json();
-    console.log(movies);
+    const location = await response.json();
+    console.log(location);
 }
 
 function onMapClick(e) {
@@ -56,11 +57,12 @@ function onMapClick(e) {
         .openOn(map);
 }
 
-function hello(id) {
-    alert(`hi ${id}`);
+async function hello(id) {
+    const response = await fetch(`/api/locations/${id}`);
+    const location = await response.json();
     map.panTo([
-        50.7065055999999998448402038775384426116943359375,
-        -1.296561063744878339321076055057346820831298828125
+        location.coordinates.lat,
+        location.coordinates.lng
     ])
 }
 
@@ -69,32 +71,16 @@ function hello(id) {
 <template>
     <Head title="Welcome" />
 
-    <main>
-        <div id="map"></div>
+    <main class="grid grid-cols-3 h-dvh">
+        <div id="map" class="col-span-2"></div>
     
-        <aside>
-            <ul>
+        <aside class="">
+            <ul class="p-4">
                 <li v-for="pin in locations">
-                    <div @click="hello(pin.id)" class="">{{ pin.title }}</div>
+                    <div @click="hello(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }}</div>
                 </li>
             </ul>            
         </aside>
     </main>
 
 </template>
-
-<style>
-    #map { 
-        height: 100dvh;
-        width: 100%;
-    }
-
-    main {
-        display: grid;
-        grid-template-columns: 70dvw 30dvw;
-    }
-
-    aside {
-        width: 100%;
-    }
-</style>
