@@ -62,7 +62,7 @@ function onMapClick(e) {
         .openOn(map);
 }
 
-async function hello(id) {
+async function panTo(id) {
     const response = await fetch(`/api/locations/${id}`);
     const location = await response.json();
     map.panTo([
@@ -82,7 +82,7 @@ async function hello(id) {
         <aside class="">
             <ul class="p-4">
                 <li v-for="pin in locations">
-                    <div @click="hello(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }}</div>
+                    <div @click="panTo(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }}</div>
                 </li>
             </ul>            
         </aside>
