@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\Moment;
 use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 
@@ -12,5 +13,10 @@ class LocationController extends Controller
     {
         $location = Location::find($id);
         return json_encode($location);
+    }
+
+    public function moments()
+    {
+        return $this->hasMany(Moment::class);
     }
 }
