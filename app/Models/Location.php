@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Location extends Model
 {
@@ -11,5 +13,11 @@ class Location extends Model
 
     protected $casts = [
         'coordinates' => 'json',
+        'date_taken' => 'date:Y-m-d'
     ];
+
+    public function moments() : HasMany
+    {
+        return $this->hasMany(Moment::class);
+    }
 }
