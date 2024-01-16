@@ -71,20 +71,38 @@ async function panTo(id) {
     ])
 }
 
+console.log(props.locations);
+
 </script>
 
 <template>
     <Head title="Welcome" />
 
-    <main class="grid grid-cols-3 h-dvh">
+    <main class="grid grid-cols-3 max-h-dvh">
         <div id="map" class="col-span-2"></div>
     
         <aside class="">
             <ul class="p-4">
-                <li v-for="pin in locations">
+                <li v-for="pin in locations" :key="pin.id">
                     <div @click="panTo(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }}</div>
                 </li>
-            </ul>            
+            </ul>
+            <div class="overflow-auto">
+                <div 
+                    v-for="moment in locations[0].moments" 
+                    :key="moment.id"
+                    class="">
+                    <h3 class="truncate text-xl mx-4">{{ moment.title }}</h3>
+                    <img :src="moment.image" alt="">
+                    <div class="m-4">
+                        <div class="">Date Taken: {{ moment.date_taken }}</div>
+                        <div class="">Direction: {{ moment.direction }}</div>
+                        <div class="">Source: {{ moment.source }}</div>
+                        <div class="">Shared By: {{ moment.author.name }}</div>
+                        {{ moment.description }}
+                    </div>
+                </div>
+            </div>
         </aside>
     </main>
 
