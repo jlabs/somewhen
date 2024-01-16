@@ -14,9 +14,4 @@ class LocationController extends Controller
         $location = Location::find($id);
         return json_encode($location);
     }
-
-    public function moments()
-    {
-        return $this->hasMany(Moment::class);
-    }
 }
