@@ -12,7 +12,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'locations' => Location::all()
+        'locations' => Location::with('moments.author')->get()
     ]);
 });
 
