@@ -38,7 +38,10 @@ onMounted(() => {
             fillOpacity: 0.5,
             radius: 300
         }).addTo(map);
-        circle.bindPopup(marker.title);
+        circle.bindPopup(`
+            <div class='text-xl'>${marker.title}</div>
+            <div>${marker.moments.length} moments</div>
+        `);
         // Add a click event listener to the circle
         circle.on('click', function (e) {
             // 'e' is the event object, and 'e.latlng' contains the coordinates where the click occurred
@@ -54,7 +57,6 @@ onMounted(() => {
 async function GetLocation(id) {
     const response = await fetch(`/api/locations/${id}`);
     const location = await response.json();
-    console.log(location);
 }
 
 function onMapClick(e) {
@@ -70,6 +72,9 @@ async function panTo(id) {
     //const location = await response.json();
 
     locationRef.value = await response.json();
+
+    momentsList.classList.toggle('hidden');
+    locationsList.classList.toggle('hidden');
     
     map.panTo([
         locationRef.value.coordinates.lat,
@@ -77,7 +82,11 @@ async function panTo(id) {
     ])
 }
 
-console.log(props.locations);
+function backToList() {
+    locationRef.value = {};
+    locationsList.classList.remove('hidden');
+    momentsList.classList.add('hidden');
+}
 
 </script>
 
@@ -88,24 +97,25 @@ console.log(props.locations);
         <div id="map" class="col-span-2"></div>
     
         <aside class="">
-            <ul class="p-4">
+            <ul class="p-4" id="locationsList">
                 <li v-for="pin in locations" :key="pin.id">
                     <div @click="panTo(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }}</div>
                 </li>
             </ul>
-            <div class="overflow-auto">
+            <div class="overflow-auto absolute hidden" id="momentsList">
+                <div @click="backToList">Back to list ...</div>
                 <div 
                     v-for="moment in locationRef.moments" 
                     :key="moment.id"
                     class="">
-                    <h3 class="truncate text-xl mx-4">{{ moment.title }}</h3>
                     <img :src="moment.image" alt="" loading="lazy" class=" h-48 w-full object-cover">
                     <div class="m-4">
+                        <h3 class="truncate text-xl">{{ moment.title }}</h3>
                         <div class="">Date Taken: {{ moment.date_taken }}</div>
-                        <div class="">Direction: {{ moment.direction }}</div>
+                        <!-- <div class="">Direction: {{ moment.direction }}</div>
                         <div class="">Source: {{ moment.source }}</div>
                         <div class="">Shared By: {{ moment.author.name }}</div>
-                        {{ moment.description }}
+                        {{ moment.description }} -->
                     </div>
                 </div>
             </div>
