@@ -11,7 +11,7 @@ class LocationController extends Controller
 {
     public function location($id, Request $request) 
     {
-        $location = Location::find($id);
+        $location = Location::with('moments.author')->find($id);
         return json_encode($location);
     }
 }
