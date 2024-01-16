@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 //import { points } from '../points.js'
 
 const props = defineProps({
@@ -11,6 +11,9 @@ const props = defineProps({
 });
 
 var map;
+
+const locationRef = ref({});
+
 onMounted(() => {
     map = L.map('map')
         .setView([
@@ -64,10 +67,13 @@ function onMapClick(e) {
 
 async function panTo(id) {
     const response = await fetch(`/api/locations/${id}`);
-    const location = await response.json();
+    //const location = await response.json();
+
+    locationRef.value = await response.json();
+    
     map.panTo([
-        location.coordinates.lat,
-        location.coordinates.lng
+        locationRef.value.coordinates.lat,
+        locationRef.value.coordinates.lng
     ])
 }
 
@@ -78,7 +84,7 @@ console.log(props.locations);
 <template>
     <Head title="Welcome" />
 
-    <main class="grid grid-cols-3 max-h-dvh">
+    <main class="grid grid-cols-3 max-h-dvh h-dvh">
         <div id="map" class="col-span-2"></div>
     
         <aside class="">
@@ -89,11 +95,11 @@ console.log(props.locations);
             </ul>
             <div class="overflow-auto">
                 <div 
-                    v-for="moment in locations[0].moments" 
+                    v-for="moment in locationRef.moments" 
                     :key="moment.id"
                     class="">
                     <h3 class="truncate text-xl mx-4">{{ moment.title }}</h3>
-                    <img :src="moment.image" alt="">
+                    <img :src="moment.image" alt="" loading="lazy" class=" h-48 w-full object-cover">
                     <div class="m-4">
                         <div class="">Date Taken: {{ moment.date_taken }}</div>
                         <div class="">Direction: {{ moment.direction }}</div>
