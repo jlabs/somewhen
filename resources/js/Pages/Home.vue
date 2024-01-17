@@ -35,7 +35,7 @@ onMounted(() => {
         var circle = L.circle([marker.coordinates.lat, marker.coordinates.lng], {
             color: marker.colour,
             fillColor: marker.colour,
-            fillOpacity: 0.5,
+            fillOpacity: 0.8,
             radius: 300
         }).addTo(map);
         circle.bindPopup(`
