@@ -28,8 +28,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/locations', [LocationController::class, 'index'])->name('locations');
     Route::get('/locations/new', [LocationController::class, 'new'])->name('locations.index');
+    Route::get('/locations/edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
+    
     Route::post('/locations/new', [LocationController::class, 'create'])->name('locations.new');
-    Route::post('/locations/edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
 });
 
 require __DIR__.'/auth.php';
