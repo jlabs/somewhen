@@ -51,5 +51,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Moment::factory(15)->create();
+
+        User::factory()->create([
+            'name' => 'Jamie',
+            'email' => 'jamie@dams.io',
+            'password' => bcrypt('password'),
+        ]);
     }
 }
