@@ -46,7 +46,7 @@ class LocationController extends Controller
 
     public function edit($id, Request $request)
     {
-        Location::findOrFail($id)->get();
+        $location = Location::findOrFail($id);
 
         return Inertia::render('Locations/Edit', [
             'location' => $location
