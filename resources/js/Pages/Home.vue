@@ -103,7 +103,7 @@ function backToList() {
                 </li>
             </ul>
             <div class="overflow-auto absolute hidden" id="momentsList">
-                <div @click="backToList">Back to list ...</div>
+                <div @click="backToList" class=" cursor-pointer text-xl">Back to list ...</div>
                 <div 
                     v-for="moment in locationRef.moments" 
                     :key="moment.id"
