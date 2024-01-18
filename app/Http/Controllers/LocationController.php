@@ -16,8 +16,40 @@ class LocationController extends Controller
         return json_encode($location);
     }
 
-    public function locations(Request $request)
+    public function index(Request $request)
     {
-        return Inertia::render('Locations');
+        return Inertia::render('Locations/Index', [
+            'locations' => Location::all()->map(function ($location) {
+                return [
+                    'id' => $location->id,
+                    'title' => $location->title,
+                    'edit_url' => route('location.edit', $location),
+                ];
+            }),
+        ]);
+    }
+
+    public function new(Request $request)
+    {
+        return Inertia::render('Locations/New');
+    }
+
+    public function create(Request $request)
+    {
+        Location::create($request->validate([
+            'title' => ['required', 'max:50'],
+            'coordinates' => 'required',
+        ]));
+
+        return redirect()->back();
+    }
+
+    public function edit($id, Request $request)
+    {
+        Location::findOrFail($id)->get();
+
+        return Inertia::render('Locations/Edit', [
+            'location' => $location
+        ]);
     }
 }

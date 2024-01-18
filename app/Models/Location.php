@@ -15,6 +15,10 @@ class Location extends Model
         'coordinates' => 'json',
         'date_taken' => 'date:Y-m-d'
     ];
+    protected $fillable = [
+        'title',
+        'coordinates'
+    ];
 
     public function moments() : HasMany
     {
