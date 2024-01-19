@@ -4,6 +4,10 @@ import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3'
 
 defineProps({
+    moment: {
+        type: Object,
+        required: true
+    },
     location: {
         type: Object,
         required: true
@@ -29,26 +33,11 @@ const form = useForm({
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-1/2 mx-auto">
                         <form @submit.prevent="form.post('/locations/create')" class="flex flex-col">
-                            <input type="text" v-model="location.title" class="text-black" placeholder="Title">
+                            <input type="text" v-model="moment.title" class="text-black" placeholder="Title">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
-                            
-                            <input type="text" v-model="location.coordinates.lat" class="text-black" placeholder="Coordinates">
-                            <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lat }}</div>
-                            <input type="text" v-model="location.coordinates.lng" class="text-black" placeholder="Coordinates">
-                            <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lng }}</div>
                             
                             <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Save</button>
                         </form>
-                        <div class="flext flex-row gap-4">
-                            <a 
-                                v-for="moment in location.moments" 
-                                :key="moment.id" 
-                                :href="`/locations/${location.id}/moments/${moment.id}`" 
-                                class="block"
-                            >
-                                {{ moment.id }} - {{  moment.title }}
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

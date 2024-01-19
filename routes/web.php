@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MomentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,8 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/locations', [LocationController::class, 'index'])->name('locations');
     Route::get('/locations/new', [LocationController::class, 'new'])->name('locations.index');
     Route::get('/locations/edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
-    
     Route::post('/locations/new', [LocationController::class, 'create'])->name('locations.new');
+    
+    Route::get('/locations/{location}/moments/{id}', [MomentController::class, 'edit'])->name('moment.edit');
 });
 
 require __DIR__.'/auth.php';
