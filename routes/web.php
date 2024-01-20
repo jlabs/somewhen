@@ -17,6 +17,9 @@ Route::get('/', function () {
         'locations' => Location::with('moments.author')->get()
     ]);
 });
+Route::get('/leaflet', function () {
+    return Inertia::render('Leaflet');
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
