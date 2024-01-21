@@ -25,4 +25,9 @@ class MomentController extends Controller
             ]
         ]);
     }
+
+    public function new($location, Request $request)
+    {
+        return Inertia::render('Moments/New');
+    }
 }

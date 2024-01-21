@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/locations/edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
     Route::post('/locations/new', [LocationController::class, 'create'])->name('locations.new');
     
+    Route::get('/locations/{location}/moments/new', [MomentController::class, 'new'])->name('moment.new');
     Route::get('/locations/{location}/moments/{id}', [MomentController::class, 'edit'])->name('moment.edit');
 });
 
