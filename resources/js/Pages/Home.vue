@@ -2,6 +2,8 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { onMounted, ref } from 'vue';
 //import { points } from '../points.js'
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
 const props = defineProps({
     locations: {
@@ -11,15 +13,14 @@ const props = defineProps({
 });
 
 var map;
-
 const locationRef = ref({});
+const center = [
+    50.7065055999999998448402038775384426116943359375,
+    -1.296561063744878339321076055057346820831298828125
+];
 
-onMounted(() => {
-    map = L.map('map')
-        .setView([
-            50.7065055999999998448402038775384426116943359375,
-            -1.296561063744878339321076055057346820831298828125
-        ], 13);
+function setupLeafletMap() {
+    map = L.map("map").setView(center, 13);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -41,6 +42,7 @@ onMounted(() => {
         circle.bindPopup(`
             <div class='text-xl'>${marker.title}</div>
             <div>${marker.moments.length} moments</div>
+            <div onclick='Boo(${marker.id})'>View</div>
         `);
         // Add a click event listener to the circle
         circle.on('click', function (e) {
@@ -52,6 +54,10 @@ onMounted(() => {
         bounds.push([marker.coordinates.lat, marker.coordinates.lng]);
     });
     map.fitBounds(bounds);
+}
+
+onMounted(() => {
+    setupLeafletMap();
 })
 
 async function GetLocation(id) {
@@ -65,6 +71,10 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
+}
+
+function Boo() {
+    console.log('boo');
 }
 
 async function panTo(id) {
