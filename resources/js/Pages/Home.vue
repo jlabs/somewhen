@@ -109,7 +109,7 @@ function backToList() {
         <aside class="">
             <ul class="p-4" id="locationsList">
                 <li v-for="pin in locations" :key="pin.id">
-                    <div @click="panTo(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }}</div>
+                    <div @click="panTo(pin.id)" class="cursor-pointer text-2xl py-2">{{ pin.title }} <small>({{ pin.moments.length }} moments)</small></div>
                 </li>
             </ul>
             <div class="overflow-auto absolute hidden" id="momentsList">
