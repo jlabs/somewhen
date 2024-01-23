@@ -28,7 +28,7 @@ const form = useForm({
                             <input type="text" v-model="form.coordinates" class="text-black" placeholder="Coordinates">
                             <div v-if="form.errors.coordinates">{{ form.errors.coordinates }}</div>
                             
-                            <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Login</button>
+                            <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Add</button>
                         </form>
                     </div>
                 </div>
