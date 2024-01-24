@@ -31,7 +31,7 @@ class LocationController extends Controller
 
     public function new(Request $request)
     {
-        return Inertia::render('Locations/New');
+        return Inertia::render('Locations/Create');
     }
 
     public function create(Request $request)
@@ -48,7 +48,7 @@ class LocationController extends Controller
     {
         $location = Location::with('moments')->findOrFail($id);
 
-        return Inertia::render('Locations/Edit', [
+        return Inertia::render('Locations/Update', [
             'location' => $location
         ]);
     }
