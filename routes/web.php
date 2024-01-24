@@ -32,11 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/locations', [LocationController::class, 'index'])->name('locations');
     Route::get('/locations/create', [LocationController::class, 'new'])->name('locations.index');
     Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
-    Route::get('/locations/{id}/update', [LocationController::class, 'update'])->name('location.update');
+    Route::get('/locations/{id}', [LocationController::class, 'update'])->name('location.update');
     Route::get('/locations/{id}/delete', [LocationController::class, 'delete'])->name('location.delete');
     
     Route::get('/locations/{location}/moments/new', [MomentController::class, 'new'])->name('moment.new');
-    Route::get('/locations/{location}/moments/{id}', [MomentController::class, 'edit'])->name('moment.edit');
+    Route::get('/locations/{location}/moments/{id}', [MomentController::class, 'update'])->name('moment.update');
+    Route::get('/locations/{location}/moments/{id}/delete', [MomentController::class, 'delete'])->name('moment.delete');
 });
 
 require __DIR__.'/auth.php';
