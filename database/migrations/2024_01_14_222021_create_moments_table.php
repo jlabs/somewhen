@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('moments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignIdFor(Location::class)->constrained();
+            $table->foreignIdFor(Location::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Author::class)->constrained();
             $table->string('source')->nullable();
             $table->dateTime('date_taken')->nullable();
