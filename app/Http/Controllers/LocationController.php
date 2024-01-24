@@ -60,6 +60,8 @@ class LocationController extends Controller
 
     public function delete($id, Request $request)
     {
+        Location::destroy($id);
 
+        return redirect('/locations');
     }
 }
