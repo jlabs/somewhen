@@ -49,7 +49,12 @@ class LocationController extends Controller
         $location = Location::with('moments')->findOrFail($id);
 
         return Inertia::render('Locations/Update', [
-            'location' => $location
+            'id' => $location->id,
+            'title' => $location->title,
+            'lat' => $location->coordinates['lat'],
+            'lng' => $location->coordinates['lng'],
+            'delete_url' => route('location.delete', $location),
+            'moments' => $location->moments
         ]);
     }
 
