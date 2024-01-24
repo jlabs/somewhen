@@ -21,7 +21,7 @@ const form = useForm({
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-1/2 mx-auto">
-                        <form @submit.prevent="form.post('/locations')" class="flex flex-col">
+                        <form @submit.prevent="form.post('/locations/new')" class="flex flex-col">
                             <input type="text" v-model="form.title" class="text-black" placeholder="Title">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
                             
