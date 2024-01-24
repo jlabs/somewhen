@@ -30,9 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/locations', [LocationController::class, 'index'])->name('locations');
-    Route::get('/locations/new', [LocationController::class, 'new'])->name('locations.index');
-    Route::get('/locations/edit/{id}', [LocationController::class, 'edit'])->name('location.edit');
-    Route::post('/locations/new', [LocationController::class, 'create'])->name('locations.new');
+    Route::get('/locations/create', [LocationController::class, 'new'])->name('locations.index');
+    Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+    Route::get('/locations/{id}/update', [LocationController::class, 'update'])->name('location.update');
+    Route::get('/locations/{id}/delete', [LocationController::class, 'delete'])->name('location.delete');
     
     Route::get('/locations/{location}/moments/new', [MomentController::class, 'new'])->name('moment.new');
     Route::get('/locations/{location}/moments/{id}', [MomentController::class, 'edit'])->name('moment.edit');
