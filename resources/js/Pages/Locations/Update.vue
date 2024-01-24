@@ -4,9 +4,23 @@ import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3'
 
 defineProps({
-    location: {
-        type: Object,
-        required: true
+    id: {
+        type: Number
+    },
+    title: {
+        type: String
+    },
+    lat: {
+        type: Number
+    },
+    lng: {
+        type: Number
+    },
+    delete_url: {
+        type: String
+    },
+    moments: {
+        type: Array
     }
 })
 
@@ -29,23 +43,23 @@ const form = useForm({
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-1/2 mx-auto">
                         <form @submit.prevent="form.post('/locations/create')" class="flex flex-col">
-                            <input type="text" v-model="location.title" class="text-black" placeholder="Title">
+                            <input type="text" :value="title" class="text-black" placeholder="Title">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
                             
-                            <input type="text" v-model="location.coordinates.lat" class="text-black" placeholder="Coordinates">
+                            <input type="text" :value="lat" class="text-black" placeholder="Coordinates">
                             <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lat }}</div>
-                            <input type="text" v-model="location.coordinates.lng" class="text-black" placeholder="Coordinates">
+                            <input type="text" :value="lng" class="text-black" placeholder="Coordinates">
                             <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lng }}</div>
                             
                             <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Save</button>
                         </form>
-                        <a href="#" class="bg-red-500 block p-2 rounded my-2 text-center">Delete</a>
-                        <a :href="`/locations/${location.id}/moments/new`" class="block bg-green-300 p-2 rounded my-2 text-center text-black">Add moment</a>
+                        <a :href="delete_url" class="bg-red-500 block p-2 rounded my-2 text-center">Delete</a>
+                        <a :href="`/locations/${id}/moments/new`" class="block bg-green-300 p-2 rounded my-2 text-center text-black">Add moment</a>
                         <div class="flext flex-row gap-4">
                             <a 
-                                v-for="moment in location.moments" 
+                                v-for="moment in moments" 
                                 :key="moment.id" 
-                                :href="`/locations/${location.id}/moments/${moment.id}`" 
+                                :href="`/locations/${id}/moments/${moment.id}`" 
                                 class="block"
                             >
                                 <div class="grid grid-flow-col grid-cols-2">
