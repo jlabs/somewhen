@@ -28,7 +28,6 @@ const form = useForm({
 })
 
 const coordinates = computed(() => {
-    console.log(props.coords.lat);
     return `${props.coords.lat},${props.coords.lng}`;
 })
 </script>
