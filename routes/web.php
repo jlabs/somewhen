@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
-        'locationsCount' => Location::all()->count()
+        'locations' => Location::count()
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
