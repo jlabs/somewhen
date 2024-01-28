@@ -33,6 +33,7 @@ const form = useForm({
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-1/2 mx-auto">
                         <form @submit.prevent="form.post('/locations/create')" class="flex flex-col">
+                            <img :src="moment.image" />
                             <input type="text" v-model="moment.title" class="text-black" placeholder="Title">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
                             
