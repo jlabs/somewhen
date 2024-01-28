@@ -2,19 +2,17 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3'
+import { computed, ref } from 'vue';
 
-defineProps({
+const props = defineProps({
     id: {
         type: Number
     },
     title: {
         type: String
     },
-    lat: {
-        type: Number
-    },
-    lng: {
-        type: Number
+    coords: {
+        type: Object
     },
     delete_url: {
         type: String
@@ -27,6 +25,11 @@ defineProps({
 const form = useForm({
     title: null,
     coordinates: null,
+})
+
+const coordinates = computed(() => {
+    console.log(props.coords.lat);
+    return `${props.coords.lat},${props.coords.lng}`;
 })
 </script>
 
@@ -45,10 +48,8 @@ const form = useForm({
                         <form @submit.prevent="form.post('/locations/create')" class="flex flex-col">
                             <input type="text" :value="title" class="text-black" placeholder="Title">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
-                            
-                            <input type="text" :value="lat" class="text-black" placeholder="Coordinates">
-                            <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lat }}</div>
-                            <input type="text" :value="lng" class="text-black" placeholder="Coordinates">
+
+                            <input type="text" :value="coordinates" class="text-black" placeholder="Coordinates">
                             <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lng }}</div>
                             
                             <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Save</button>
