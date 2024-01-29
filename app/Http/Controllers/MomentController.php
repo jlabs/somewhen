@@ -22,6 +22,7 @@ class MomentController extends Controller
             'moment' => [
                 'id' => $moment->id,
                 'title' => $moment->title,
+                'image' => $moment->image,
                 'delete_url' => route('moment.delete', ['location' => $location, 'id' => $moment])
             ]
         ]);
