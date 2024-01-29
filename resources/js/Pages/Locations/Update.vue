@@ -54,7 +54,7 @@ const coordinates = computed(() => {
                             <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Save</button>
                         </form>
                         <a :href="delete_url" class="bg-red-500 block p-2 rounded my-2 text-center">Delete</a>
-                        <a :href="`/locations/${id}/moments/new`" class="block bg-green-300 p-2 rounded my-2 text-center text-black">Add moment</a>
+                        <a :href="`/locations/${id}/moments/create`" class="block bg-green-300 p-2 rounded my-2 text-center text-black">Add moment</a>
                         <div class="flext flex-row gap-4">
                             <a 
                                 v-for="moment in moments" 
