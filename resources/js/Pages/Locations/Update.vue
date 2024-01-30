@@ -11,8 +11,17 @@ const props = defineProps({
     title: {
         type: String
     },
-    coords: {
+    colour: {
+        type: String
+    },
+    button_label: {
+        type: String
+    },
+    coordinates: {
         type: Object
+    },
+    gmaps_url: {
+        type: String
     },
     delete_url: {
         type: String
@@ -24,15 +33,22 @@ const props = defineProps({
 
 const form = useForm({
     title: null,
+    colour: null,
+    button_label: null,
     coordinates: null,
+    gmaps_url: null
 })
 
 onMounted(() => {
-    form.title = props.title
+    form.title = props.title,
+    form.colour = props.colour,
+    form.button_label = props.button_label,
+    form.coordinates = `${props.coordinates.lat},${props.coordinates.lng}`,
+    form.gmaps_url = props.gmaps_url
 });
 
 const coordinates = computed(() => {
-    return `${props.coords.lat},${props.coords.lng}`;
+    return `${props.coordinates.lat},${props.coordinates.lng}`;
 })
 </script>
 
@@ -49,14 +65,21 @@ const coordinates = computed(() => {
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-1/2 mx-auto">
                         <form @submit.prevent="form.put(`/locations/${id}`)" class="flex flex-col">
-                            <input type="text" v-model="form.title" class="text-black">
+
+                            <input type="text" v-model="form.title" class="text-black" placeholder="Title">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
 
-                            <input type="text" :value="button_label" class="text-black" placeholder="Button Label">
+                            <input type="text" v-model="form.button_label" class="text-black" placeholder="Button Label">
                             <div v-if="form.errors.button_label">{{ form.errors.button_label }}</div>
 
-                            <input type="text" :value="coordinates" class="text-black" placeholder="Coordinates">
-                            <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lng }}</div>
+                            <input type="text" v-model="form.coordinates" class="text-black" placeholder="Coordinates">
+                            <div v-if="form.errors.coordinates">{{ form.errors.coordinates }}</div>
+
+                            <input type="color" v-model="form.colour" class="text-black" placeholder="Colour">
+                            <div v-if="form.errors.coordinates">{{ form.errors.colour }}</div>
+
+                            <input type="url" v-model="form.gmaps_url" class="text-black" placeholder="gMaps URL">
+                            <div v-if="form.errors.coordinates">{{ form.errors.gmaps_url }}</div>
                             
                             <button type="submit" class="block bg-orange-500 p-2 rounded my-2" :disabled="form.processing">Save</button>
                         </form>

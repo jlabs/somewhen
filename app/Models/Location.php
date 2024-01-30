@@ -17,7 +17,10 @@ class Location extends Model
     ];
     protected $fillable = [
         'title',
-        'coordinates'
+        'button_label',
+        'coordinates',
+        'colour',
+        'gmaps_url'
     ];
 
     public function moments() : HasMany

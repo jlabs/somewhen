@@ -51,8 +51,10 @@ class LocationController extends Controller
         return Inertia::render('Locations/Update', [
             'id' => $location->id,
             'title' => $location->title,
+            'colour' => $location->colour,
             'button_label' => $location->button_label,
-            'coords' => $location->coordinates,
+            'coordinates' => $location->coordinates,
+            'gmaps_url' => $location->gmaps_url,
             'delete_url' => route('location.delete', $location),
             'moments' => $location->moments
         ]);
@@ -69,9 +71,17 @@ class LocationController extends Controller
     {
         $location = Location::with('moments')->findOrFail($id);
 
+        $coordinates = explode(',', $request->get('coordinates'));
 
         $location->update([
             'title' => $request->get('title'),
+            'colour' => $request->get('colour'),
+            'button_label' => $request->get('button_label'),
+            'coordinates' => [
+                'lat' => $coordinates[0],
+                'lng' => $coordinates[1]
+            ],
+            'gmaps_url' => $request->get('gmaps_url'),
         ]);
 
         $location->save();
