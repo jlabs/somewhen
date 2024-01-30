@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { useForm } from '@inertiajs/vue3'
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps({
     id: {
@@ -27,6 +27,10 @@ const form = useForm({
     coordinates: null,
 })
 
+onMounted(() => {
+    form.title = props.title
+});
+
 const coordinates = computed(() => {
     return `${props.coords.lat},${props.coords.lng}`;
 })
@@ -44,9 +48,12 @@ const coordinates = computed(() => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100 w-1/2 mx-auto">
-                        <form @submit.prevent="form.post('/locations/create')" class="flex flex-col">
-                            <input type="text" :value="title" class="text-black" placeholder="Title">
+                        <form @submit.prevent="form.put(`/locations/${id}`)" class="flex flex-col">
+                            <input type="text" v-model="form.title" class="text-black">
                             <div v-if="form.errors.title">{{ form.errors.title }}</div>
+
+                            <input type="text" :value="button_label" class="text-black" placeholder="Button Label">
+                            <div v-if="form.errors.button_label">{{ form.errors.button_label }}</div>
 
                             <input type="text" :value="coordinates" class="text-black" placeholder="Coordinates">
                             <div v-if="form.errors.coordinates">{{ form.errors.coordinates.lng }}</div>

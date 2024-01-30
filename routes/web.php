@@ -32,7 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/locations', [LocationController::class, 'index'])->name('locations');
     Route::get('/locations/create', [LocationController::class, 'new'])->name('locations.index');
     Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
-    Route::get('/locations/{id}', [LocationController::class, 'update'])->name('location.update');
+    Route::get('/locations/{id}', [LocationController::class, 'show'])->name('location.show');
+    Route::put('/locations/{id}', [LocationController::class, 'update'])->name('location.update');
     Route::get('/locations/{id}/delete', [LocationController::class, 'delete'])->name('location.delete');
     
     Route::get('/locations/{location}/moments/create', [MomentController::class, 'new'])->name('moment.new');

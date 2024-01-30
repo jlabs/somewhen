@@ -44,13 +44,14 @@ class LocationController extends Controller
         return redirect()->back();
     }
 
-    public function update($id, Request $request)
+    public function show($id)
     {
         $location = Location::with('moments')->findOrFail($id);
 
         return Inertia::render('Locations/Update', [
             'id' => $location->id,
             'title' => $location->title,
+            'button_label' => $location->button_label,
             'coords' => $location->coordinates,
             'delete_url' => route('location.delete', $location),
             'moments' => $location->moments
@@ -62,5 +63,17 @@ class LocationController extends Controller
         Location::destroy($id);
 
         return redirect('/locations');
+    }
+
+    public function update($id, Request $request)
+    {
+        $location = Location::with('moments')->findOrFail($id);
+
+
+        $location->update([
+            'title' => $request->get('title'),
+        ]);
+
+        $location->save();
     }
 }
