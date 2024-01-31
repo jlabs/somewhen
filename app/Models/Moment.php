@@ -10,6 +10,14 @@ class Moment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'source', 
+        'date_taken', 
+        'direction', 
+        'description',
+    ];
+
     public function location()
     {
         return $this->belongsTo(Location::class);

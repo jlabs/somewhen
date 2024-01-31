@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class MomentController extends Controller
 {
-    public function update($location, $id, Request $request)
+    public function show($location, $id, Request $request)
     {
         $location = Location::findOrFail($location);
         $moment = Moment::findOrFail($id);
@@ -23,9 +23,28 @@ class MomentController extends Controller
                 'id' => $moment->id,
                 'title' => $moment->title,
                 'image' => $moment->image,
-                'delete_url' => route('moment.delete', ['location' => $location, 'id' => $moment])
+                'delete_url' => route('moment.delete', ['location' => $location, 'id' => $moment]),
+                'source' => $moment->source, 
+                'date_taken' => $moment->date_taken, 
+                'direction' => $moment->direction, 
+                'description' => $moment->description, 
             ]
         ]);
+    }
+
+    public function update($location, $id, Request $request)
+    {
+        $moment = Moment::findOrFail($id);
+
+        $moment->update([
+            'title' => $request->get('title'),
+            'source' => $request->get('source'), 
+            'date_taken' => $request->get('date_taken'), 
+            'direction' => $request->get('direction'), 
+            'description' => $request->get('description'), 
+        ]);
+
+        $moment->save();
     }
 
     public function new($location, Request $request)
