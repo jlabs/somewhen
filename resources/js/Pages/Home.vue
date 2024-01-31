@@ -122,6 +122,7 @@ function backToList() {
                     <div class="m-4">
                         <h3 class="truncate text-xl">{{ moment.title }}</h3>
                         <div class="">Date Taken: {{ moment.date_taken }}</div>
+                        <div class="">Direction: {{ moment.direction }}</div>
                         <!-- <div class="">Direction: {{ moment.direction }}</div>
                         <div class="">Source: {{ moment.source }}</div>
                         <div class="">Shared By: {{ moment.author.name }}</div>
