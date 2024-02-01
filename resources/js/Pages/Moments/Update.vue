@@ -57,6 +57,12 @@ onMounted(() => {
                             <div v-if="form.errors.date_taken">{{ form.errors.date_taken }}</div>
 
                             <input type="text" v-model="form.direction" class="text-black" placeholder="Direction">
+                            <select v-model="form.direction">
+                                <option value="N">N</option>
+                                <option value="E">E</option>
+                                <option value="S">S</option>
+                                <option value="W">W</option>
+                            </select>
                             <div v-if="form.errors.direction">{{ form.errors.direction }}</div>
                             
                             <input type="text" v-model="form.description" class="text-black" placeholder="Description">
